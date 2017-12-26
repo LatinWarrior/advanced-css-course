@@ -30,6 +30,7 @@
 }
 
 .section-stories {
+    position: relative; // Set the position relative so that the video can have a position absolute.
     padding: 15rem 0;
-    background-color: $color-gray-light-1;
+    // background-color: $color-gray-light-1;
 }
