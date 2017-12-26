@@ -7,11 +7,7 @@
     padding: 6rem;
     padding-left: 9rem;
     font-size: $default-font-size;
-    transform: skewX(-12deg);  // Make the shape of the box.
-
-    & > * { // Direct child selector.
-        // transform: skewX(-12deg);
-    }
+    transform: skewX(-12deg);  // Make the shape of the box.    
 
     &__shape {
         width: 15rem;
@@ -22,13 +18,41 @@
         -webkit-clip-path: circle(50% at 50% 50%);
         clip-path: circle(50% at 50% 50%);  // Make the element look like a circle.
         transform: translateX(-3rem) skewX(12deg);
+        position: relative; // Set the position to be relative for the caption (pos: absolute) below.
     }
 
     &__img {
         height: 100%;
+        transform: translateX(-4rem) scale(1.4);    // Move the image to the center of its container.
+        // backface-visibility: hidden;    // Fix the glitch with the image shape.
+        transition: all .5s; // animation.
     }
 
     &__text {
         transform: skewX(12deg);
+    }
+
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: $color_white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .5s; // animation.
+        backface-visibility: hidden;    // Eliminate shaking at the end of the person's name animation.
+    }
+
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);
+        filter: blur(3px) brightness(80%);
     }
 }
