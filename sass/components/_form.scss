@@ -13,7 +13,8 @@
         border: none;
         border-bottom: 3px solid transparent;
         width: 90%;
-        display: inline-block;
+        display: block;
+        transition: all .3s;    // Add animation for bottom border.
 
         &:focus {
             outline: none;  // Eliminate blue border on input element given by the browser by default.
@@ -49,5 +50,52 @@
         opacity: 0; // To hide the element. Opacity allows us to animate the effect.
         visibility: hidden; // To remove the element from the page.
         transform: translateY(-4rem);
+    }
+
+    &__radio-group {
+        width: 49%;
+        display: inline-block;  // To prevent line break so they display side-by-side.
+    }
+
+    &__radio-input {
+        display: none;
+    }
+
+    &__radio-label {
+        font-size: $default-font-size;
+        cursor: pointer;
+        position: relative; // This is to allow the radio-button to use position absolute.
+        padding-left: 4.5rem;
+    }
+
+    &__radio-button {
+
+        height: 3rem;
+        width: 3rem;
+        border: 5px solid $color-primary;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute; // This is okay for the ::after pseudo element. It does not have to be relative. It just needs to be specified.
+        left: 0;
+        top: -.4rem;
+
+        &::after {
+            content: "";    // Pseudo element requires the content property.
+            display: block;
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $color-primary;
+            opacity: 0; // Make inner circle invisible at the beginning.
+            transition: opacity .2s ;
+        }
+    }
+
+    &__radio-input:checked ~ &__radio-label &__radio-button::after {
+        opacity: 1;
     }
 }

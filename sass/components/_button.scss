@@ -1,6 +1,6 @@
 
 .btn {
-
+    &,  // Allow for these properties to be applied to the button element as well, not just the link element.
     &:link,
     &:visited {
         text-transform: uppercase;
@@ -11,6 +11,10 @@
         transition: all .2s;
         position: relative;    
         font-size: $default-font-size;        
+
+        // Change for the <button> element.
+        border: none;
+        cursor: pointer;
     }
 
     &:hover {
@@ -23,7 +27,9 @@
         }
     }
     
-    &:active {
+    &:active,
+    &:focus {   // Make the focus to act the same way as the active for accessibilty purposes.
+        outline: none;
         transform: translateY(-1px);
         box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
     }
