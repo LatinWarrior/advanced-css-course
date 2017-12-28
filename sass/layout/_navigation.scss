@@ -13,6 +13,9 @@
         border-radius: 50%;
         z-index: 2000;
         box-shadow: 0 1rem 3rem rgba($color-black, .1);
+        text-align: center;
+        cursor: pointer;    // Give the button a pointer.
+
     }
 
     &__background {
@@ -83,6 +86,7 @@
         }
     }
 
+    // FUNCTIONALITY
     &__checkbox:checked ~ &__background {
         transform: scale(80);   // Scale the opposite of what we did to occupy the entire background.
     }
@@ -91,4 +95,62 @@
         opacity: 1;
         width: 100%;
     }
+
+    // ICON
+    &__icon {
+
+        position: relative;
+        margin-top: 3.5rem;   // Make icon be a bit lower to fit in the circle.
+
+        &,
+        &:before,
+        &:after {
+            width: 3rem;
+            height: 2px;
+            background-color: $color-gray-dark-3;
+            display: inline-block;
+        }
+
+        &::before,
+        &::after {
+            content: "";            
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+
+        &::before {
+            top: -.8rem; // Move it up.
+        }
+
+        &::after {
+            top: .8rem; // Move it down.
+        }
+    }
+
+    &__button:hover &__icon::before {
+        top: -1rem;
+    }
+
+    &__button:hover &__icon::after {
+        top: 1rem;
+    }
+
+    // On checkbox checked, select its sibling and then the sibling's child.
+    &__checkbox:checked + &__button &__icon {
+        background-color: transparent;
+    }
+
+    &__checkbox:checked + &__button &__icon::before {
+        top: 0; // Move it back to the middle.
+        // transform: rotate(45deg);
+        transform: rotate(135deg);   // 180 degrees minus 45 degrees for a nicer visual effect.
+    }
+
+    &__checkbox:checked + &__button &__icon::after {
+        top: 0; // Move it back to the middle.
+        // transform: rotate(-45deg);
+        transform: rotate(-135deg);   // -180 degrees plus 45 degrees for a nicer visual effect.
+    }
+
 }
