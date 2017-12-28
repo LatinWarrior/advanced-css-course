@@ -6,6 +6,10 @@
     left: 0;
     background-color: rgba($color-black, .8);
     z-index: 9999;
+    // These are to make the popup not visible by default.
+    opacity: 0;
+    visibility: hidden;    
+    transition: all .3s;
 
     &__content {
         @include absCenter;
@@ -17,6 +21,9 @@
         border-radius: 3px;
         display: table; // This is to set the left and right to be as tables to avoid using floats.
         overflow: hidden;
+        opacity: 0; // Initial state.
+        transform: translate(-50%, -50%) scale(.25); // Need to override transform form mixin by repeating it (the translate part).
+        transition: all .5s .2s;    // Add animation. Add .2s delay to allow black background to appear first.
     }
 
     &__left {
@@ -52,5 +59,37 @@
         -ms-hyphens: auto;  // MS Edge.
         -webkit-hyphens: auto;  // Chrome and Safari.
         hyphens: auto;  // Automatically place hyphens in the text.
+    }
+
+    // This is to make the popup visible.
+    // Open states.
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    // Close button removes the target from the popup.
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-gray-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            line-height: 1; // To make hover effect work. Text has a default line height, which we need to override.
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
     }
 }
