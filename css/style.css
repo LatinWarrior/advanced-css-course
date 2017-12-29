@@ -51,7 +51,7 @@
   box-sizing: inherit; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 162.5%; }
   @media (max-width: 75em) {
     html {
       font-size: 56.25%; } }
@@ -559,7 +559,8 @@ body {
         clip-path: circle(50% at 50% 50%);
         -webkit-shape-outside: circle(50% at 50% 50%);
         shape-outside: circle(50% at 50% 50%);
-        border-radius: none; } }
+        border-radius: none;
+        overflow: none; } }
     @media (max-width: 37.5em) {
       .story__shape {
         transform: translateX(-3rem) skewX(0); } }
