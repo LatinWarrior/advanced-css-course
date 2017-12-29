@@ -23,12 +23,23 @@
         width: 15rem;
         height: 15rem;        
         float: left;
-        -webkit-shape-outside: circle(50% at 50% 50%);  // Make it work in Safari
-        shape-outside: circle(50% at 50% 50%);  // Make the elements around circle the element.
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);  // Make the element look like a circle.
+        // -webkit-shape-outside: circle(50% at 50% 50%);  // Make it work in Safari
+        // shape-outside: circle(50% at 50% 50%);  // Make the elements around circle the element.
+        // -webkit-clip-path: circle(50% at 50% 50%);
+        // clip-path: circle(50% at 50% 50%);  // Make the element look like a circle.
         transform: translateX(-3rem) skewX(12deg);
         position: relative; // Set the position to be relative for the caption (pos: absolute) below.
+        overflow: hidden;
+        border-radius: 50%;
+
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);  // Make the element look like a circle.           
+            -webkit-shape-outside: circle(50% at 50% 50%);  // Make it work in Safari
+            shape-outside: circle(50% at 50% 50%);  // Make the elements around circle the element.
+            border-radius: none;
+            overflow: none;
+        }
 
         @include respond(phone) {
             transform: translateX(-3rem) skewX(0);
