@@ -13,8 +13,8 @@
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); // Browser specific implementation.
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); // Official clip path property.
 
-    @media (min-resolution: 192dpi) and (min-width: 600px), 
-                 (min-width: 2000px) { // The comma acts as an OR condition
+    @media (min-resolution: 192dpi) and (min-width: 37.5em), 
+                 (min-width: 125em) { // The comma acts as an OR condition
         background-image: linear-gradient(
             to right bottom, 
             rgba($color-secondary-light, 0.8), 
