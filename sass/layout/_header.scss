@@ -19,9 +19,9 @@
         height: 95vh;
     }
 
-    @media (min-resolution: 192dpi) and (min-width: 37.5em), 
-                 (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),  // This is for Safari.
-                 (min-width: 125em) { // The comma acts as an OR condition
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), 
+                only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),  // This is for Safari.
+                only screen and (min-width: 125em) { // The comma acts as an OR condition
         background-image: linear-gradient(
             to right bottom, 
             rgba($color-primary-light, 0.8), 
